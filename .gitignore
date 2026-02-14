@@ -4,3 +4,4 @@ postgresql-data/
 
 logs/*
 !**/.gitkeep
+/src/generated/prisma

@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       String  @id @default(uuid())
+  username String  @unique
+
+  name     String
+  avatar   String?
+
+  isAdmin  Boolean @default(false)
+  isDeleted Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  basicAuth BasicAuth?
+
+  @@map("users")
+}
+
+model BasicAuth {
+  id String @id @default(uuid())
+
+  passwordHash String @map("password_hash")
+
+  userId String @unique @map("user_id")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("basic_auth")
+}

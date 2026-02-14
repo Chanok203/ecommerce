@@ -17,4 +17,7 @@ export const config = {
     isProd: getEnv('NODE_ENV') === 'production',
     host: getEnv('HOST'),
     port: Number(getEnv('PORT')),
+    dbUrl: getEnv('DATABASE_URL'),
+    redisUrl: getEnv('REDIS_URL'),
+    secret: getEnv('SECRET'),
 } as const;
