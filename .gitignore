@@ -1,6 +1,7 @@
 node_modules/
 postgresql-data/
 
+.env
 
 logs/*
 !**/.gitkeep
