@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register Form</h1>
+    {% if error %}
+    <h3>{{error.message}}</h3>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="nameInput" required>
+
+        <label for="avatar">Avatar:</label>
+        <input type="file" name="avatar" id="avatarInput" required>
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="usernameInput" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="passwordInput" required>
+
+        <label for="password2">Confirm Password:</label>
+        <input type="password" name="password2" id="password2Input" required>
+
+        <button>Register</button>
+    </form>
+</body>
+</html>

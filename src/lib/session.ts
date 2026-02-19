@@ -4,7 +4,8 @@ import { redisConnection } from './redis';
 import { config } from '../config';
 
 const sessionStore = new RedisStore({
-    client: redisConnection
+    client: redisConnection,
+    prefix: 'sess:',
 });
 
 export const sessionConfig = session({

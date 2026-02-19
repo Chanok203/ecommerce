@@ -14,27 +14,27 @@
 
 ### Utils
 - [x] hash function (2026-02-07)
-- [ ] multer for upload
 
 ### Auth
 
-- [ ] service
+- [X] service
     - [X] login
-    - [ ] register
+    - [X] register
 - [X] session
 - [X] middleware
     - [X] requireAuth
     - [X] requireAdmin
-- [ ] views
-    - [ ] register
+- [X] views
+    - [X] register
     - [X] login
-    - [ ] logout
+    - [X] logout
 
 ### User (Admin, Customer) isAdmin = true, false
 - [X] model
     - [X] User
     - [X] BasicAuth
 - [X] seed for admin
+- [x] multer for upload
 - [ ] service
     - [ ] create new user
     - [ ] get all users

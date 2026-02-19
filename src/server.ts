@@ -9,7 +9,8 @@ import { logger } from './utils/logger.util';
 import { authRouter } from './modules/auth/auth.route';
 import { adminRouter } from './modules/admin/admin.route';
 import { sessionConfig } from './lib/session';
-import { requireAdmin } from './middlewares/auth.middleware';
+import { requireAdmin, requireAuth } from './middlewares/auth.middleware';
+import { homeRouter } from './modules/home/home.route';
 
 const app = express();
 nunjucks.configure(path.resolve(__dirname, '..', 'views'), {
@@ -37,10 +38,20 @@ app.use(express.json());
 app.use(sessionConfig);
 
 // add Middlewares
+app.use((req, res, next) => {
+    res.locals.currentPath = req.originalUrl;
+
+    if (req.session && req.session.user) {
+        res.locals.user = req.session.user;
+    }
+
+    next();
+})
 
 // add Routers
 app.use('/auth', authRouter);
 app.use('/admin', requireAdmin, adminRouter);
+app.use('/', homeRouter);
 
 // 404
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {

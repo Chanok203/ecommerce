@@ -5,12 +5,12 @@ export const requireAuth = (req: Request, res: Response, next: NextFunction) => 
         res.locals.user = req.session.user;
         return next();
     }
-
     return res.redirect(`/auth/login?next=${req.originalUrl}`);
 }
 
 export const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
     requireAuth(req, res, () => {
+        
         if (req.session.user?.isAdmin === true) {
             return next();
         }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %} | Ecommerce</title>
+</head>
+
+<body>
+    <nav>
+        {% if user %}
+        Welcome, {{user.username}}
+        <form action="/auth/logout" method="post" style="display: inline;">
+            <button type="submit">logout</button>
+        </form>
+        {% else %}
+        <form action="/auth/login" method="get" style="display: inline;">
+            <input type="hidden" name="next" value="{{currentPath}}">
+            <button type="submit">login</button>
+        </form>
+        <form action="/auth/register" method="get" style="display: inline;">
+            <button type="submit">register</button>
+        </form>
+        {% endif %}
+    </nav>
+
+</body>
+
+</html>
