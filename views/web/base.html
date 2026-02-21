@@ -8,9 +8,11 @@
 </head>
 
 <body>
-    <nav>
+    <nav style="margin-bottom: 16px;">
         {% if user %}
-        Welcome, {{user.username}}
+        Welcome, 
+        <img src="/uploads/avatars/32x32/{{user.avatar}}" alt="" style="border-radius: 50%;">
+        <a href="/users/me">{{user.name}} ({{user.username}})</a>
         <form action="/auth/logout" method="post" style="display: inline;">
             <button type="submit">logout</button>
         </form>
@@ -25,6 +27,10 @@
         {% endif %}
     </nav>
 
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
 </body>
 
 </html>

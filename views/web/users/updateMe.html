@@ -1,0 +1,26 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Update Me{% endblock title %}
+
+{% block content %}
+<img src="/uploads/avatars/256x256/{{user.avatar}}" alt="avatar..." style="border-radius: 50%;">
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="usernameInput" value="{{user.username}}" disabled>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="nameInput" value="{{user.name}}" required>
+
+    <label for="avatar">Avatar:</label>
+    <input type="file" name="avatar" id="avatarInput">
+    
+
+    <button>Update</button>
+    <button type="reset">Reset</button>
+</form>
+
+<a href="/users/me/change-password">Change Password</a>
+<form action="/users/me/delete" method="post" onsubmit="return confirm('Are you sure?')">
+    <button>delete me</button>
+</form>
+{% endblock content %}

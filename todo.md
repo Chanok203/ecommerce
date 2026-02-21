@@ -38,16 +38,16 @@
 - [ ] service
     - [ ] create new user
     - [ ] get all users
-    - [ ] get an user by id
-    - [ ] update an user
-    - [ ] delete an user
+    - [X] get an user by id
+    - [X] update an user
+    - [X] delete an user
     - [ ] reset user's password
 
 - [ ] views
-    - [ ] me
-        - [ ] view profile
-        - [ ] update profile
-        - [ ] delete me
+    - [X] me
+        - [X] view profile
+        - [X] update profile
+        - [X] delete me
     - [ ] admin
         - [ ] list users
         - [ ] create new user
