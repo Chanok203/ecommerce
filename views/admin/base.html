@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %} | Back Office</title>
+
+    {% block style %}
+    {% endblock style %}
+
 </head>
 
 <body>
@@ -16,6 +20,17 @@
             <button type="submit">logout</button>
         </form>
     </nav>
+    <hr />
+    <nav style="display: flex; gap: 16px;">
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/users">Users</a>
+    </nav>
+    <hr />
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
 
 </body>
 

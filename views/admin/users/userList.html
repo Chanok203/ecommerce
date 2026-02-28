@@ -1,0 +1,68 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Users{% endblock title %}
+
+{% block style %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f5f5f5;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+
+{% if error %}
+<h3>Error: {{error}}</h3>
+{% endif %}
+
+<h1>Users</h1>
+<div style="padding: 16px 0px">
+    <a href="/admin/users/create">+ New User</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>IsAdmin?</th>
+            <th>Deleted?</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.isAdmin}}</td>
+            <td>{{user.isDeleted}}</td>
+            <td>
+
+                <a href="/admin/users/{{user.id}}/update">Update</a>
+
+                <form action="/admin/users/{{user.id}}/delete" method="post"
+                    style="display: inline; margin-left: 12px;">
+                    <a href="#" onclick="this.closest('form').submit()">Delete</a>
+                </form>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

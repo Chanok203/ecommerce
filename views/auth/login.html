@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+
 <body>
     <h1>Login Form</h1>
     {% if error %}
     <h3>{{error.message}}</h3>
     {% endif %}
-    <form action="" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="usernameInput" required>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="passwordInput" required>
-
-        <button>Login</button>
+    <form action="" method="post" style="display: flex; flex-direction: column; gap: 16px;">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="usernameInput" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="passwordInput" required>
+        </div>
+        <div>
+            <button>Login</button>
+        </div>
     </form>
 </body>
+
 </html>

@@ -1,0 +1,42 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Users | Create{% endblock title %}
+
+{% block content %}
+
+{% if error %}
+<h3>Error: {{error}}</h3>
+{% endif %}
+
+<h1>Users | Create</h1>
+
+<form 
+    action="" 
+    method="post" 
+    style="display: flex; flex-direction: column; gap: 16px;"
+>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="nameInput" required>
+    </div>
+
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="usernameInput" required>
+    </div>
+
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="passwordInput" required>
+    </div>
+
+    <div>
+        <label for="password2">Confirm Password:</label>
+        <input type="password" name="password2" id="password2Input" required>
+    </div>
+
+    <div>
+        <button>Submit</button>
+    </div>
+</form>
+{% endblock content %}

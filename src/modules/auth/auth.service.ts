@@ -28,7 +28,7 @@ export const login = async (username: string, password: string) => {
     };
 };
 
-export const register = async (name: string, avatarPath: string, username: string, password: string, password2: string) => {
+export const register = async (name: string, avatarPath: string|null, username: string, password: string, password2: string) => {
     if (password !== password2) {
         const error: any = new Error(`Password and Comfirm Password must be the same`);
         error.statusCode = 400;

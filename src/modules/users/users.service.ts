@@ -77,12 +77,35 @@ export class UserService {
             }
 
             await tx.user.update({
-                where: {id: id},
+                where: { id: id },
                 data: {
                     isDeleted: true,
-                    username: `deleted__${timestamp}__${user.username}`
-                }
-            })
+                    username: `deleted__${timestamp}__${user.username}`,
+                },
+            });
         });
+    }
+
+    public async findAll(include_deleted: boolean = false) {
+        const users = await prisma.user.findMany({
+            orderBy: {createdAt: 'asc'},
+            where: include_deleted ? {} : { isDeleted: false },
+        });
+        return users.map((user) => {
+            if (user.isDeleted) {
+                return {
+                    ...user,
+                    username: this.extractOriginalUsername(user.username),
+                }
+            }
+            return user
+        });
+    }
+
+    private extractOriginalUsername(username: string) {
+        if (username.startsWith('deleted__')) {
+            return username.split('__').pop() || username;
+        }
+        return username;
     }
 }

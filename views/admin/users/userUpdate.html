@@ -1,0 +1,33 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Users | Update{% endblock title %}
+
+{% block content %}
+
+{% if error %}
+<h3>Error: {{error}}</h3>
+{% endif %}
+
+<h1>Users | Update</h1>
+
+<form action="" method="post" style="display: flex; flex-direction: column; gap: 16px;">
+
+    <div>
+        <img src="/uploads/avatars/256x256/{{thisUser.avatar}}" alt="avatar..." style="border-radius: 50%;">
+    </div>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="usernameInput" disabled value="{{thisUser.username}}">
+    </div>
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="nameInput" required value="{{thisUser.name}}">
+    </div>
+
+    <div>
+        <button>Submit</button>
+        <input type="reset" value="Reset">
+    </div>
+</form>
+{% endblock content %}

@@ -2,7 +2,7 @@
 
 ## Modules
 
-- [ ] Auth
+- [X] Auth
 - [ ] User
 - [ ] Admin
 - [ ] Wallet
@@ -35,23 +35,29 @@
     - [X] BasicAuth
 - [X] seed for admin
 - [x] multer for upload
-- [ ] service
-    - [ ] create new user
-    - [ ] get all users
+- [X] service
+    - [X] create new user (auth.service.register)
+    - [X] get all users (findAll)
     - [X] get an user by id
     - [X] update an user
     - [X] delete an user
-    - [ ] reset user's password
 
-- [ ] views
+- [X] views
     - [X] me
         - [X] view profile
         - [X] update profile
         - [X] delete me
-    - [ ] admin
-        - [ ] list users
-        - [ ] create new user
-        - [ ] view user's profile
-        - [ ] update user's profile
-        - [ ] delete an user
-        - [ ] reset user's password
+    - [X] admin
+        - [X] list users
+        - [X] create new user
+        - [X] view user's profile
+        - [X] update user's profile
+        - [X] delete an user
+
+
+### Topup (เติมเงิน)
+
+- user อัพโหลดรูปการโอนเงินเข้ามา
+- admin ตรวจสอบรูป
+    - ถ้าสำเร็จ admin เพิ่มเงินให้ user หรือกด approve
+    - ถ้าไม่สำเร็จ admin กด reject
