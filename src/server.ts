@@ -3,6 +3,7 @@ import path from 'path';
 import express from 'express';
 import morgan from 'morgan';
 import nunjucks from 'nunjucks';
+import flash from 'connect-flash';
 
 import { config } from './config';
 import { logger } from './utils/logger.util';
@@ -13,6 +14,7 @@ import { requireAdmin, requireAuth } from './middlewares/auth.middleware';
 import { homeRouter } from './modules/home/home.route';
 import { usersRouter } from './modules/users/users.route';
 import { UserService } from './modules/users/users.service';
+import { topupRouter } from './modules/topup/topup.route';
 
 const app = express();
 nunjucks.configure(path.resolve(__dirname, '..', 'views'), {
@@ -39,17 +41,20 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(sessionConfig);
+app.use(flash());
 
 // add Middlewares
 app.use(async (req, res, next) => {
     res.locals.currentPath = req.originalUrl;
-
     if (req.session && req.session.user) {
         const { id } = req.session.user;
-
-        res.locals.user = await (new UserService()).findOne(id);
+        res.locals.user = await new UserService().findOne(id);
     }
+    next();
+});
 
+app.use(async (req, res, next) => {
+    res.locals.flash_msg = req.flash();
     next();
 });
 
@@ -57,6 +62,7 @@ app.use(async (req, res, next) => {
 app.use('/auth', authRouter);
 app.use('/admin', requireAdmin, adminRouter);
 
+app.use('/topup', requireAuth, topupRouter);
 app.use('/users', requireAuth, usersRouter);
 app.use('/', homeRouter);
 
@@ -69,7 +75,7 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
-    console.log(message);
+    console.error(err);
     res.status(statusCode).send(message);
 });
 

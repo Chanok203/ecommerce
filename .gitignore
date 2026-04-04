@@ -4,6 +4,6 @@ postgresql-data/
 .env
 
 logs/*
-uploads/avatar/*
+uploads/
 !**/.gitkeep
 /src/generated/prisma

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
+    "@types/connect-flash": "^0.0.40",
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.18.2",
     "@types/jest": "^30.0.0",
@@ -30,6 +31,7 @@
     "@prisma/adapter-pg": "^7.4.0",
     "@prisma/client": "^7.4.0",
     "bcrypt": "^6.0.0",
+    "connect-flash": "^0.1.1",
     "connect-redis": "8",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",

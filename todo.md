@@ -3,7 +3,11 @@
 ## Modules
 
 - [X] Auth
-- [ ] User
+- [X] User
+- [X] Flash Message
+- [ ] Topup
+    - [X] User Create Topup Request
+- [ ] Notification
 - [ ] Admin
 - [ ] Wallet
 - [ ] Product

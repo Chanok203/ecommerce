@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %} | Ecommerce</title>
+    {% block style %}
+    {% endblock style %}
 </head>
 
 <body>
     <nav style="margin-bottom: 16px;">
         {% if user %}
-        Welcome, 
+        Welcome,
         <img src="/uploads/avatars/32x32/{{user.avatar}}" alt="" style="border-radius: 50%;">
         <a href="/users/me">{{user.name}} ({{user.username}})</a>
         <form action="/auth/logout" method="post" style="display: inline;">
@@ -26,6 +28,20 @@
         </form>
         {% endif %}
     </nav>
+    <hr>
+    <nav style="display: flex; gap: 16px;">
+        <a href="/">Home</a>
+        <a href="/topup">Topup</a>
+    </nav>
+    <hr>
+
+    <div style="margin: 16px 0;">
+        <ul>
+            {% for key, msg in flash_msg %}
+            <li>{{key}}: {{msg}}</li>
+            {% endfor %}
+        </ul>
+    </div>
 
     <main>
         {% block content %}

@@ -1,0 +1,24 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Topup | Create{% endblock title %}
+
+
+{% block content %}
+<h1>Topup | Create</h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="priceInput" min="1" placeholder="price" required>
+    </div>
+    <div>
+        <label for="image">Proof Image:</label>
+        <input type="file" accept="image/*" name="image" id="imageInput" placeholder="select image..."
+            required>
+    </div>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Topup{% endblock title %}
+
+{% block style %}
+<style>
+    table {
+        margin: 16px 0;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f5f5f5;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<h1>Topup</h1>
+
+<a href="/topup/create">+ new topup</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>price</th>
+            <th>status</th>
+            <th>createdAt</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for topup in topupList %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{topup.price}}</td>
+            <td>{{topup.status}}</td>
+            <td>{{topup.createdAt}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

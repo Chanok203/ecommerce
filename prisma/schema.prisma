@@ -8,19 +8,20 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  username String  @unique
+  id       String @id @default(uuid())
+  username String @unique
 
-  name     String
-  avatar   String?
+  name   String
+  avatar String?
 
-  isAdmin  Boolean @default(false)
+  isAdmin   Boolean @default(false)
   isDeleted Boolean @default(false)
-  
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   basicAuth BasicAuth?
+  topup     Topup[]
 
   @@map("users")
 }
@@ -31,7 +32,27 @@ model BasicAuth {
   passwordHash String @map("password_hash")
 
   userId String @unique @map("user_id")
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("basic_auth")
+}
+
+model Topup {
+  id String @id @default(uuid())
+
+  ownerId String
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  status TopupStatus @default(PENDING)
+  price  Float
+  image  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum TopupStatus {
+  PENDING
+  APPROVED
+  REJECT
 }
